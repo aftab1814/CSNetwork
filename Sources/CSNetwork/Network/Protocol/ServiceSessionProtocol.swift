@@ -1,13 +1,13 @@
 import Foundation
 
-protocol URLSessionDataTaskProtocol {
+public protocol URLSessionDataTaskProtocol {
     func resume()
     func cancel()
 }
 
 extension URLSessionDataTask: URLSessionDataTaskProtocol { }
 
-protocol ServiceSessionProtocol {
+public protocol ServiceSessionProtocol {
 
     typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
     
@@ -15,7 +15,7 @@ protocol ServiceSessionProtocol {
 }
 
 extension URLSession: ServiceSessionProtocol {
-    func dataTask(request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
+    public func dataTask(request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
         return dataTask(with: request, completionHandler: completionHandler)
     }
 }

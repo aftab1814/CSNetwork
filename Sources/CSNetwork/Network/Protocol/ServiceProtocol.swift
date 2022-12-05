@@ -1,17 +1,17 @@
 import Foundation
 
-enum HTTPMethod: String {
+public enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
     case delete = "DELETE"
 }
 
-typealias Headers = [String: String]
-typealias Parameters = [AnyHashable: Any]
-typealias QueryItems = [String: String]
+public typealias Headers = [String: String]
+public typealias Parameters = [AnyHashable: Any]
+public typealias QueryItems = [String: String]
 
-protocol ServiceProtocol {
+public protocol ServiceProtocol {
     var baseURL: URL { get }
     // var endpointURL: URL { get }
     var path: String { get }
@@ -24,7 +24,7 @@ protocol ServiceProtocol {
 }
 
 extension URLRequest {
-    init(service: ServiceProtocol) {
+    public init(service: ServiceProtocol) {
         let url = service.baseURL.appendingPathComponent(service.path)
         var components = URLComponents(string: url.absoluteString)
         components?.queryItems = service.queryItems?.map({ (key, value) in
@@ -55,7 +55,7 @@ extension URLRequest {
 
 
 extension Dictionary where Key == AnyHashable, Value == Any {
-    func jsonData() -> Data? {
+    public func jsonData() -> Data? {
         return try? JSONSerialization.data(withJSONObject: self,
                                            options: .prettyPrinted)
     }

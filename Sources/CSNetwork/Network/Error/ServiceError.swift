@@ -1,6 +1,6 @@
 import Foundation
 
-enum ServiceError: Error {
+public enum ServiceError: Error {
     case unknown
     case failed(Int, Data?)
     case noJSONData
