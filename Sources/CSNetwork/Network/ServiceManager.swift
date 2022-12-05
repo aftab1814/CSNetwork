@@ -1,15 +1,15 @@
 import Foundation
 
-protocol JSONParseable {
+public protocol JSONParseable {
     func parse<T: Decodable>(data: Data) throws -> T?
 }
 
-final class ServiceManager: NSObject {
+public final class ServiceManager: NSObject {
 
     private var session: ServiceSessionProtocol
     private var task: URLSessionDataTaskProtocol?
     
-    init(session: ServiceSessionProtocol = URLSession.shared) {
+    public init(session: ServiceSessionProtocol = URLSession.shared) {
         self.session = session
     }
  
@@ -46,7 +46,7 @@ final class ServiceManager: NSObject {
 }
 
 extension ServiceManager: ServiceProviderProtocol {
-    func request<T>(type: T.Type, service: ServiceProtocol, completion: @escaping (ServiceResponse<T>) -> Void) where T: Decodable {
+    public func request<T>(type: T.Type, service: ServiceProtocol, completion: @escaping (ServiceResponse<T>) -> Void) where T: Decodable {
         let request = URLRequest(service: service)
         self.task = self.session.dataTask(request: request, completionHandler: { [weak self] data, response, error in
             let httpResponse = response as? HTTPURLResponse
@@ -55,7 +55,7 @@ extension ServiceManager: ServiceProviderProtocol {
         self.task?.resume()
     }
     
-    func cancel() {
+    public func cancel() {
         self.task?.cancel()
     }
 }
