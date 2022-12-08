@@ -4,3 +4,8 @@ framework module CSNetworkKit {
   export *
   module * { export * }
 }
+
+module CSNetworkKit.Swift {
+    header "CSNetworkKit-Swift.h"
+    requires objc
+}

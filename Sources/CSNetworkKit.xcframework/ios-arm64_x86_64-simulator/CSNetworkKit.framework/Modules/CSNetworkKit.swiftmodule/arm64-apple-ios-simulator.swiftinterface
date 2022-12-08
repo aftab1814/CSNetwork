@@ -1,0 +1,123 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
+// swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name CSNetworkKit
+@_exported import CSNetworkKit
+import CommonCrypto
+import CryptoKit
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+public enum ServiceError : Swift.Error {
+  case unknown
+  case failed(Swift.Int, Foundation.Data?)
+  case noJSONData
+  case invalidJSONData
+  case typeMismatch(Swift.String)
+}
+public class ACCSuspiciousDeviceDetection {
+  public init()
+  public var amIJailBroken: Swift.Bool {
+    get
+  }
+  @objc deinit
+}
+extension Swift.String {
+  public static var empty: Swift.String {
+    get
+  }
+  public static var noMessage: Swift.String
+}
+public enum HTTPMethod : Swift.String {
+  case get
+  case post
+  case put
+  case delete
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public typealias Headers = [Swift.String : Swift.String]
+public typealias Parameters = [Swift.AnyHashable : Any]
+public typealias QueryItems = [Swift.String : Swift.String]
+public protocol ServiceProtocol {
+  var baseURL: Foundation.URL { get }
+  var path: Swift.String { get }
+  var method: CSNetworkKit.HTTPMethod { get }
+  var headers: CSNetworkKit.Headers? { get }
+  var parameters: CSNetworkKit.Parameters? { get }
+  var queryItems: CSNetworkKit.QueryItems? { get }
+  var isLoggedIn: Swift.Bool { get }
+}
+extension Foundation.Bundle {
+  public var displayName: Swift.String? {
+    get
+  }
+}
+public protocol URLSessionDataTaskProtocol {
+  func resume()
+}
+extension Foundation.URLSessionDataTask : CSNetworkKit.URLSessionDataTaskProtocol {
+}
+public protocol ServiceSessionProtocol {
+  typealias DataTaskResult = (Foundation.Data?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void
+  func dataTask(request: Foundation.URLRequest, completionHandler: @escaping Self.DataTaskResult) -> CSNetworkKit.URLSessionDataTaskProtocol
+}
+extension Foundation.URLSession : CSNetworkKit.ServiceSessionProtocol {
+  public func dataTask(request: Foundation.URLRequest, completionHandler: @escaping Foundation.URLSession.DataTaskResult) -> CSNetworkKit.URLSessionDataTaskProtocol
+}
+public enum ServiceResponse<T> {
+  case success(T)
+  case failure(Swift.Error)
+}
+public protocol ServiceProviderProtocol {
+  func request<T>(type: T.Type, service: CSNetworkKit.ServiceProtocol, completion: @escaping (CSNetworkKit.ServiceResponse<T>) -> Swift.Void) where T : Swift.Decodable
+}
+extension Swift.Double {
+  public func formatWithDecimal(upto decimalPlaces: Swift.Int) -> Swift.String?
+}
+@available(iOS 13.0, *)
+public class ACCJWT {
+  public init(with payload: [Swift.AnyHashable : Any])
+  public func encodedToken(with privateKey: CryptoKit.SymmetricKey) -> Swift.String?
+  @objc deinit
+}
+extension Swift.Dictionary where Key == Swift.String, Value == Swift.String {
+  public static var empty: [Swift.String : Swift.String] {
+    get
+  }
+  public func jsonString() -> Swift.String?
+}
+extension Swift.Dictionary where Key == Swift.AnyHashable, Value == Any {
+  public func jsonData() -> Foundation.Data?
+}
+@objc final public class ServiceManager : ObjectiveC.NSObject {
+  public init(session: CSNetworkKit.ServiceSessionProtocol = URLSession.shared)
+  @objc deinit
+}
+extension CSNetworkKit.ServiceManager : CSNetworkKit.ServiceProviderProtocol {
+  final public func request<T>(type: T.Type, service: CSNetworkKit.ServiceProtocol, completion: @escaping (CSNetworkKit.ServiceResponse<T>) -> Swift.Void) where T : Swift.Decodable
+}
+extension Foundation.Data {
+  public func sha256() -> Foundation.Data
+  public func urlSafeBase64EncodedString() -> Swift.String
+  public var dictionary: [Swift.String : Any]? {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class ACCUtil {
+  @objc deinit
+}
+extension Swift.Encodable {
+  public var asDictionary: [Swift.AnyHashable : Any]? {
+    get
+  }
+}
+extension Swift.Double {
+  public var millisecondsSince1970: Swift.Int64 {
+    get
+  }
+  public init(milliseconds: Swift.Int64)
+}
