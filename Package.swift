@@ -7,7 +7,7 @@ let package = Package(
     name: "CSNetworkPkg",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(name: "CSNetwork", targets: ["CSNetwork"])
+        .library(name: "CSNetworkKit", targets: ["CSNetworkKit"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -18,7 +18,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .testTarget(
             name: "CSNetworkTests",
-            dependencies: ["CSNetwork"]),
-        .binaryTarget(name: "CSNetwork", path: "Sources/CSNetwork.xcframework")
+            dependencies: ["CSNetworkKit"]),
+        .binaryTarget(name: "CSNetworkKit", path: "Sources/CSNetworkKit.xcframework")
     ]
 )

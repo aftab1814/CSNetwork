@@ -1,0 +1,6 @@
+framework module CSNetworkKit {
+  umbrella header "CSNetworkKit.h"
+
+  export *
+  module * { export * }
+}
