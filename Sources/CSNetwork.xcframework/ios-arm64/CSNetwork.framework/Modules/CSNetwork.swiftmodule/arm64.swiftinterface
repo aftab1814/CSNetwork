@@ -1,0 +1,123 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
+// swift-module-flags: -target arm64-apple-ios15.5 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name CSNetwork
+@_exported import CSNetwork
+import CommonCrypto
+import CryptoKit
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+extension Foundation.Data {
+  public func sha256() -> Foundation.Data
+  public func urlSafeBase64EncodedString() -> Swift.String
+  public var dictionary: [Swift.String : Any]? {
+    get
+  }
+}
+public enum ServiceError : Swift.Error {
+  case unknown
+  case failed(Swift.Int, Foundation.Data?)
+  case noJSONData
+  case invalidJSONData
+  case typeMismatch(Swift.String)
+}
+public class ACCSuspiciousDeviceDetection {
+  public init()
+  public var amIJailBroken: Swift.Bool {
+    get
+  }
+  @objc deinit
+}
+extension Swift.Double {
+  public var millisecondsSince1970: Swift.Int64 {
+    get
+  }
+  public init(milliseconds: Swift.Int64)
+}
+@_hasMissingDesignatedInitializers public class ACCUtil {
+  @objc deinit
+}
+extension Swift.Double {
+  public func formatWithDecimal(upto decimalPlaces: Swift.Int) -> Swift.String?
+}
+public enum ServiceResponse<T> {
+  case success(T)
+  case failure(Swift.Error)
+}
+public protocol ServiceProviderProtocol {
+  func request<T>(type: T.Type, service: CSNetwork.ServiceProtocol, completion: @escaping (CSNetwork.ServiceResponse<T>) -> Swift.Void) where T : Swift.Decodable
+}
+extension Foundation.Bundle {
+  public var displayName: Swift.String? {
+    get
+  }
+}
+extension Swift.Encodable {
+  public var asDictionary: [Swift.AnyHashable : Any]? {
+    get
+  }
+}
+public protocol URLSessionDataTaskProtocol {
+  func resume()
+}
+extension Foundation.URLSessionDataTask : CSNetwork.URLSessionDataTaskProtocol {
+}
+public protocol ServiceSessionProtocol {
+  typealias DataTaskResult = (Foundation.Data?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void
+  func dataTask(request: Foundation.URLRequest, completionHandler: @escaping Self.DataTaskResult) -> CSNetwork.URLSessionDataTaskProtocol
+}
+extension Foundation.URLSession : CSNetwork.ServiceSessionProtocol {
+  public func dataTask(request: Foundation.URLRequest, completionHandler: @escaping Foundation.URLSession.DataTaskResult) -> CSNetwork.URLSessionDataTaskProtocol
+}
+@available(iOS 13.0, *)
+public class ACCJWT {
+  public init(with payload: [Swift.AnyHashable : Any])
+  public func encodedToken(with privateKey: CryptoKit.SymmetricKey) -> Swift.String?
+  @objc deinit
+}
+public enum HTTPMethod : Swift.String {
+  case get
+  case post
+  case put
+  case delete
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public typealias Headers = [Swift.String : Swift.String]
+public typealias Parameters = [Swift.AnyHashable : Any]
+public typealias QueryItems = [Swift.String : Swift.String]
+public protocol ServiceProtocol {
+  var baseURL: Foundation.URL { get }
+  var path: Swift.String { get }
+  var method: CSNetwork.HTTPMethod { get }
+  var headers: CSNetwork.Headers? { get }
+  var parameters: CSNetwork.Parameters? { get }
+  var queryItems: CSNetwork.QueryItems? { get }
+  var isLoggedIn: Swift.Bool { get }
+}
+extension Swift.String {
+  public static var empty: Swift.String {
+    get
+  }
+  public static var noMessage: Swift.String
+}
+@objc final public class ServiceManager : ObjectiveC.NSObject {
+  public init(session: CSNetwork.ServiceSessionProtocol = URLSession.shared)
+  @objc deinit
+}
+extension CSNetwork.ServiceManager : CSNetwork.ServiceProviderProtocol {
+  final public func request<T>(type: T.Type, service: CSNetwork.ServiceProtocol, completion: @escaping (CSNetwork.ServiceResponse<T>) -> Swift.Void) where T : Swift.Decodable
+}
+extension Swift.Dictionary where Key == Swift.String, Value == Swift.String {
+  public static var empty: [Swift.String : Swift.String] {
+    get
+  }
+  public func jsonString() -> Swift.String?
+}
+extension Swift.Dictionary where Key == Swift.AnyHashable, Value == Any {
+  public func jsonData() -> Foundation.Data?
+}
