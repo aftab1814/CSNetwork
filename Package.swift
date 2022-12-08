@@ -7,7 +7,7 @@ let package = Package(
     name: "CSNetwork",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(name: "CSNetwork", type: .dynamic, targets: ["CSNetwork"])
+        .library(name: "CSNetwork", targets: ["CSNetwork"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
