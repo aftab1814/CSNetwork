@@ -20,7 +20,6 @@ let package = Package(
             name: "CSNetwork"),
         .testTarget(
             name: "CSNetworkTests",
-            dependencies: ["CSNetwork"]),
-        .binaryTarget(name: "CSNetwork", path: "artifacts/CSNetwork.xcframework")
+            dependencies: ["CSNetwork"])
     ]
 )
